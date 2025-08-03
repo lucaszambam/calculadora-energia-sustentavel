@@ -8,7 +8,7 @@
       </select>
       <select v-model="local.city" :disabled="!local.state">
         <option disabled value="">Selecione uma cidade</option>
-        <option v-for="city in data[local.state]" :key="city" :value="city">
+        <option v-for="city in Object.keys(data[local.state] ? data[local.state] : [])" :key="city" :value="city">
           {{ city }}
         </option>
       </select>
