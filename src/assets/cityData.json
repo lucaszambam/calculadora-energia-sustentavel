@@ -1,0 +1,11 @@
+{
+  "SC": {
+    "Florianopolis": { "tarifa": 0.75, "irradiacao": 4.5 },
+    "Joinville":     { "tarifa": 0.70, "irradiacao": 4.2 },
+    "Rio do Sul":    { "tarifa": 0.70, "irradiacao": 4.2 }
+  },
+  "SP": {
+    "São Paulo":    { "tarifa": 0.80, "irradiacao": 4.1 },
+    "Campinas":     { "tarifa": 0.78, "irradiacao": 4.0 }
+  }
+}
