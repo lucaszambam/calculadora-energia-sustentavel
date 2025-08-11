@@ -1,11 +1,83 @@
 {
+  "AC": {
+    "Rio Branco": { "tarifa": 0.82, "irradiacao": 4.8, "taxaDistribuicao": 0.12, "co2PorKwh": 0.084 }
+  },
+  "AL": {
+    "Maceió": { "tarifa": 0.80, "irradiacao": 5.0, "taxaDistribuicao": 0.12, "co2PorKwh": 0.084 }
+  },
+  "AP": {
+    "Macapá": { "tarifa": 0.85, "irradiacao": 4.7, "taxaDistribuicao": 0.13, "co2PorKwh": 0.084 }
+  },
+  "AM": {
+    "Manaus": { "tarifa": 0.83, "irradiacao": 4.6, "taxaDistribuicao": 0.14, "co2PorKwh": 0.084 }
+  },
+  "BA": {
+    "Salvador": { "tarifa": 0.78, "irradiacao": 5.3, "taxaDistribuicao": 0.11, "co2PorKwh": 0.084 }
+  },
+  "CE": {
+    "Fortaleza": { "tarifa": 0.76, "irradiacao": 5.4, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "DF": {
+    "Brasília": { "tarifa": 0.74, "irradiacao": 5.5, "taxaDistribuicao": 0.09, "co2PorKwh": 0.084 }
+  },
+  "ES": {
+    "Vitória": { "tarifa": 0.77, "irradiacao": 5.0, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "GO": {
+    "Goiânia": { "tarifa": 0.75, "irradiacao": 5.4, "taxaDistribuicao": 0.11, "co2PorKwh": 0.084 }
+  },
+  "MA": {
+    "São Luís": { "tarifa": 0.79, "irradiacao": 5.1, "taxaDistribuicao": 0.12, "co2PorKwh": 0.084 }
+  },
+  "MT": {
+    "Cuiabá": { "tarifa": 0.76, "irradiacao": 5.6, "taxaDistribuicao": 0.11, "co2PorKwh": 0.084 }
+  },
+  "MS": {
+    "Campo Grande": { "tarifa": 0.74, "irradiacao": 5.5, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "MG": {
+    "Belo Horizonte": { "tarifa": 0.72, "irradiacao": 5.2, "taxaDistribuicao": 0.09, "co2PorKwh": 0.084 }
+  },
+  "PA": {
+    "Belém": { "tarifa": 0.81, "irradiacao": 4.5, "taxaDistribuicao": 0.13, "co2PorKwh": 0.084 }
+  },
+  "PB": {
+    "João Pessoa": { "tarifa": 0.77, "irradiacao": 5.2, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "PR": {
+    "Curitiba": { "tarifa": 0.79, "irradiacao": 4.2, "taxaDistribuicao": 0.12, "co2PorKwh": 0.084 }
+  },
+  "PE": {
+    "Recife": { "tarifa": 0.76, "irradiacao": 5.1, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "PI": {
+    "Teresina": { "tarifa": 0.75, "irradiacao": 5.5, "taxaDistribuicao": 0.09, "co2PorKwh": 0.084 }
+  },
+  "RJ": {
+    "Rio de Janeiro": { "tarifa": 0.78, "irradiacao": 4.8, "taxaDistribuicao": 0.11, "co2PorKwh": 0.084 }
+  },
+  "RN": {
+    "Natal": { "tarifa": 0.76, "irradiacao": 5.3, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "RS": {
+    "Porto Alegre": { "tarifa": 0.80, "irradiacao": 4.3, "taxaDistribuicao": 0.12, "co2PorKwh": 0.084 }
+  },
+  "RO": {
+    "Porto Velho": { "tarifa": 0.82, "irradiacao": 4.7, "taxaDistribuicao": 0.13, "co2PorKwh": 0.084 }
+  },
+  "RR": {
+    "Boa Vista": { "tarifa": 0.84, "irradiacao": 4.9, "taxaDistribuicao": 0.12, "co2PorKwh": 0.084 }
+  },
   "SC": {
-    "Florianopolis": { "tarifa": 0.75, "irradiacao": 4.5 },
-    "Joinville":     { "tarifa": 0.70, "irradiacao": 4.2 },
-    "Rio do Sul":    { "tarifa": 0.70, "irradiacao": 4.2 }
+    "Florianópolis": { "tarifa": 0.75, "irradiacao": 4.5, "taxaDistribuicao": 0.11, "co2PorKwh": 0.084 }
   },
   "SP": {
-    "São Paulo":    { "tarifa": 0.80, "irradiacao": 4.1 },
-    "Campinas":     { "tarifa": 0.78, "irradiacao": 4.0 }
+    "São Paulo": { "tarifa": 0.80, "irradiacao": 4.1, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "SE": {
+    "Aracaju": { "tarifa": 0.77, "irradiacao": 5.0, "taxaDistribuicao": 0.10, "co2PorKwh": 0.084 }
+  },
+  "TO": {
+    "Palmas": { "tarifa": 0.74, "irradiacao": 5.5, "taxaDistribuicao": 0.09, "co2PorKwh": 0.084 }
   }
 }
