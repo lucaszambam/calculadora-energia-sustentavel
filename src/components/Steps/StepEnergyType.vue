@@ -3,15 +3,19 @@
     <p>Selecione o tipo de energia:</p>
     <div class="options">
       <button
-        :class="{ selected: modelValue.energyType==='solar' }"
-        @click="select('solar')"
-      >Eólica</button>
+        :class="{ selected: modelValue.id_tipo_energia === 1 }"
+        @click="select(1)"
+      >
+        Solar
+      </button>
       <button
-        :class="{ selected: modelValue.energyType==='eolica' }"
-        @click="select('eolica')"
-      >Fotovoltaica</button>
+        :class="{ selected: modelValue.id_tipo_energia === 2 }"
+        @click="select(2)"
+      >
+        Eólica
+      </button>
     </div>
-    <button :disabled="!modelValue.energyType" @click="$emit('next')">
+    <button :disabled="!modelValue.id_tipo_energia" @click="$emit('next')">
       Próximo
     </button>
   </div>
@@ -22,8 +26,8 @@ export default {
   name: 'StepEnergyType',
   props: { modelValue: Object },
   methods: {
-    select(val) {
-      this.$emit('update:modelValue', { ...this.modelValue, energyType: val })
+    select(id) {
+      this.$emit('update:modelValue', { ...this.modelValue, id_tipo_energia: id })
     }
   }
 }
