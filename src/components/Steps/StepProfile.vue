@@ -57,10 +57,16 @@ export default {
   },
   methods: {
     selectSegment(id) {
-      this.$emit('update:modelValue', { ...this.modelValue, id_segmento: id })
+      this.$emit('update:modelValue', { 
+        ...this.modelValue, 
+        id_segmento: id 
+      })
     },
     selectInstall(id) {
-      this.$emit('update:modelValue', { ...this.modelValue, id_tipo_instalacao: id })
+      this.$emit('update:modelValue', { 
+        ...this.modelValue, 
+        id_tipo_instalacao: id 
+      })
     }
   }
 }

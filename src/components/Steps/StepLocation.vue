@@ -74,47 +74,16 @@ export default {
       }
     },
 
-    normalizeEficiencias(ef) {
-      // aceita array [{id_segmento, eficiencia_valor}] ou objeto
-      if (!ef) return {}
-      if (Array.isArray(ef)) {
-        const map = {}
-        ef.forEach(item => { map[item.id_segmento] = Number(item.eficiencia_valor || 0) })
-        return map
-      }
-      return ef // já é objeto { [id_segmento]: valor }
-    },
-
-    async apply() {
+    apply() {
       if (!this.local.cityId) return
-      this.loadingParametros = true
-      try {
-        const res = await fetch(`http://127.0.0.1:8000/api/parametros?id_cidade=${this.local.cityId}&incluir_eficiencias=1`)
-        if (!res.ok) throw new Error('Falha ao buscar parâmetros')
-        const p = await res.json()
-
-        const parametros = {
-          tarifa_base: Number(p.tarifa_base ?? 0),
-          taxa_distribuicao: Number(p.taxa_distribuicao ?? 0),
-          co2_por_kwh: Number(p.co2_por_kwh ?? 0.084),
-          eficiencias: this.normalizeEficiencias(p.eficiencias)
-        }
-
-        const chosenCity = this.cidades.find(c => c.id_cidade === this.local.cityId)
-        this.$emit('update:modelValue', {
-          ...this.modelValue,
-          stateSigla: this.local.stateSigla,
-          id_cidade: this.local.cityId,
-          cidadeNome: chosenCity?.nome || '',
-          parametros
-        })
-        this.$emit('next')
-      } catch (e) {
-        console.error(e)
-        alert('Não foi possível carregar parâmetros para esta cidade.')
-      } finally {
-        this.loadingParametros = false
-      }
+      const chosenCity = this.cidades.find(c => c.id_cidade === this.local.cityId)
+      this.$emit('update:modelValue', {
+        ...this.modelValue,
+        stateSigla: this.local.stateSigla,
+        id_cidade: this.local.cityId,
+        cidadeNome: chosenCity?.nome || ''
+      })
+      this.$emit('next')
     }
   },
   mounted() {

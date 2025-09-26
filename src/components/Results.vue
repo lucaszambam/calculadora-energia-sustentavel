@@ -111,10 +111,27 @@ export default {
       return Number(map[id] ?? 0)
     },
     eficienciaTotal() {
-      const raw = this.eficienciaSegmento + this.ajusteInstalacao
-      return Math.min(Math.max(raw, 0), 0.95)
+      const efc = this.p.eficiencias ?? [];
+      // Se o back filtrou, já virá só com a combinação certa; de qualquer forma, filtramos de novo:
+      if (Array.isArray(efc)) {
+        const seg = Number(this.form.id_segmento);
+        const te  = Number(this.form.id_tipo_energia);
+        const ti  = Number(this.form.id_tipo_instalacao);
+        const m = efc.find(e =>
+          Number(e.id_segmento) === seg &&
+          Number(e.id_tipo_energia) === te &&
+          Number(e.id_tipo_instalacao) === ti
+        );
+        const v = m ? Number(m.eficiencia_valor) : 0;
+        return Math.min(Math.max(v, 0), 0.95);
+      }
+      // fallback nacional/estadual (objeto por segmento)
+      if (efc && typeof efc === 'object') {
+        const segVal = Number(efc[this.form.id_segmento]) || 0;
+        return Math.min(Math.max(segVal, 0), 0.95);
+      }
+      return 0;
     },
-
     convMensal() { return this.gastoMensal },
     convAnual() { return this.convMensal * 12 },
 

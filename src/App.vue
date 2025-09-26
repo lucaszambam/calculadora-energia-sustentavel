@@ -36,13 +36,12 @@ export default {
     return {
       step: 1,
       form: {
-        energyType: null,      // 'solar' ou 'eolica'
-        state: null,
-        city: null,
-        segment: null,         // 'residencial', 'comercial', ...
-        installation: null,    // 'monofasico', ...
-        expense: null,         // valor em R$
-        kwh: null              // cálculo instantâneo
+        id_tipo_energia: null,
+        id_cidade: null,
+        id_segmento: null,
+        id_tipo_instalacao: null,
+        gastoMensal: null,
+        parametros: null
       }
     }
   },
@@ -54,6 +53,47 @@ export default {
         3: 'StepProfile',
         4: 'StepConsumption'
       }[this.step]
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler(newVal, oldVal) {
+        if (
+          newVal.id_cidade !== oldVal.id_cidade ||
+          newVal.id_segmento !== oldVal.id_segmento ||
+          newVal.id_tipo_instalacao !== oldVal.id_tipo_instalacao ||
+          newVal.id_tipo_energia !== oldVal.id_tipo_energia
+        ) {
+          this.carregarParametros()
+        }
+      }
+    }
+  },
+  methods: {
+    async carregarParametros() {
+      const { id_cidade, id_segmento, id_tipo_instalacao, id_tipo_energia } = this.form
+      if (!id_cidade || !id_segmento || !id_tipo_instalacao || !id_tipo_energia) {
+        this.form.parametros = null
+        return
+      }
+
+      const qs = new URLSearchParams({
+        id_cidade,
+        incluir_eficiencias: '1',
+        ef_segmento: id_segmento,
+        ef_tipo_energia: id_tipo_energia,
+        ef_tipo_instalacao: id_tipo_instalacao
+      })
+
+      try {
+        const res = await fetch(`http://127.0.0.1:8000/api/parametros?${qs}`)
+        if (!res.ok) throw new Error('Erro ao carregar parâmetros')
+        this.form.parametros = await res.json()
+      } catch (err) {
+        console.error(err)
+        this.form.parametros = null
+      }
     }
   }
 }
