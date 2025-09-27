@@ -3,7 +3,11 @@
     <div
       v-for="n in 5"
       :key="n"
-      :class="['step', { active: n === step, done: n < step }]"
+      class="stepper__item"
+      :class="{
+        'stepper__item--active': n === step,
+        'stepper__item--done': n < step
+      }"
     >{{ n }}</div>
   </div>
 </template>

@@ -1,21 +1,21 @@
 <template>
-  <div class="step">
+  <div>
     <p>Selecione o tipo de energia:</p>
-    <div class="options">
+    <div class="option-group">
       <button
-        :class="{ selected: modelValue.id_tipo_energia === 1 }"
+        class="option"
+        :class="{ 'is-active': modelValue.id_tipo_energia === 1 }"
         @click="select(1)"
-      >
-        Solar
-      </button>
+      >Solar</button>
+
       <button
-        :class="{ selected: modelValue.id_tipo_energia === 2 }"
+        class="option"
+        :class="{ 'is-active': modelValue.id_tipo_energia === 2 }"
         @click="select(2)"
-      >
-        Eólica
-      </button>
+      >Eólica</button>
     </div>
-    <button :disabled="!modelValue.id_tipo_energia" @click="$emit('next')">
+
+    <button class="btn btn--primary" :disabled="!modelValue.id_tipo_energia" @click="$emit('next')">
       Próximo
     </button>
   </div>

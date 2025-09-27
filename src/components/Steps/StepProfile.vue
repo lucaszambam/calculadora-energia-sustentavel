@@ -2,23 +2,25 @@
   <div class="step">
     <p>Selecione o segmento e tipo de instalação</p>
 
-    <div class="options">
+    <div class="option-group">
       <button
         v-for="seg in segments"
         :key="seg.id"
         @click="selectSegment(seg.id)"
-        :class="{selected: modelValue.id_segmento === seg.id}"
+        class="option"
+        :class="{ 'is-active': modelValue.id_segmento === seg.id }"
       >
         {{ seg.nome }}
       </button>
     </div>
 
-    <div class="options">
+    <div class="option-group">
       <button
         v-for="inst in installs"
         :key="inst.id"
         @click="selectInstall(inst.id)"
-        :class="{selected: modelValue.id_tipo_instalacao === inst.id}"
+        class="option"
+        :class="{ 'is-active': modelValue.id_tipo_instalacao === inst.id }"
       >
         {{ inst.nome }}
       </button>

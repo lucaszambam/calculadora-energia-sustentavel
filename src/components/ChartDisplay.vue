@@ -1,11 +1,11 @@
 <template>
-  <div class="charts">
-    <div class="chart-card">
+  <div class="charts" >
+    <div class="chart-card card card--pad" style="height:330px;">
       <h3>Comparativo Mensal (R$)</h3>
       <canvas ref="barEl"></canvas>
     </div>
 
-    <div class="chart-card">
+    <div class="chart-card card card--pad" style="height:330px;">
       <h3>Distribuição Anual (R$)</h3>
       <canvas ref="pieEl"></canvas>
     </div>
@@ -22,7 +22,6 @@ export default {
     summary: {
       type: Object,
       required: true
-      // { convMensal, renMensal, convAnual, renAnual, economiaAnual, co2AnoKg }
     }
   },
   setup(props) {
@@ -46,7 +45,8 @@ export default {
         },
         options: {
           responsive: true,
-          plugins: { legend: { display: false } },
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
           scales: { y: { beginAtZero: true } }
         }
       })
@@ -107,12 +107,21 @@ export default {
   gap: 1rem;
 
   .chart-card {
-    background: #fff; border-radius: 6px; padding: 1rem; border: 1px solid #e3e7ea;
-    h3 { margin: 0 0 .75rem 0; font-size: 1rem; }
+    background: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+    border: 1px solid #e3e7ea;
+
+    h3 {
+      margin: 0 0 .75rem 0;
+      font-size: 1rem;
+    }
   }
 }
 
 @media (max-width: 900px) {
-  .charts { grid-template-columns: 1fr; }
+  .charts {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -3,14 +3,14 @@
     <p>Selecione Estado e Cidade</p>
 
     <div class="fields">
-      <select v-model="local.stateSigla" @change="onStateChange">
+      <select v-model="local.stateSigla" @change="onStateChange" class="select">
         <option disabled value="">Selecione um estado</option>
         <option v-for="uf in estados" :key="uf.sigla" :value="uf.sigla">
           {{ uf.nome }} ({{ uf.sigla }})
         </option>
       </select>
 
-      <select v-model="local.cityId" :disabled="!local.stateSigla || loadingCities">
+      <select v-model="local.cityId" :disabled="!local.stateSigla || loadingCities" class="select">
         <option disabled value="">{{ loadingCities ? 'Carregando...' : 'Selecione uma cidade' }}</option>
         <option v-for="c in cidades" :key="c.id_cidade" :value="c.id_cidade">
           {{ c.nome }}

@@ -1,19 +1,14 @@
 <template>
-  <div class="step">
+  <div>
     <p>Informe seu gasto médio mensal de energia (R$):</p>
-    <input
-      type="number"
-      v-model.number="localExpense"
-      placeholder="Ex: 350.00"
-      min="1"
-      step="0.01"
-    />
+    <div class="field mt-4 mb-6">
+      <label class="label" for="gasto">Valor em reais</label>
+      <input id="gasto" type="number" class="input" v-model.number="localExpense" min="1" step="0.01" placeholder="Ex: 350.00"/>
+    </div>
 
-    <p v-if="consumoKwh">Consumo estimado: {{ consumoKwh.toFixed(2) }} kWh/mês</p>
-
-    <div class="buttons">
-      <button @click="$emit('prev')">Voltar</button>
-      <button :disabled="!localExpense" @click="apply">Próximo</button>
+    <div class="row">
+      <button class="btn btn--ghost" @click="$emit('prev')">Voltar</button>
+      <button class="btn btn--primary" :disabled="!localExpense" @click="apply">Próximo</button>
     </div>
   </div>
 </template>

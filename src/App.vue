@@ -1,16 +1,23 @@
 <template>
-  <div id="app">
-    <h1>Calculadora Energia Sustentável</h1>
-    <Stepper :step="step" />
-    
-    <component
-      :is="currentComponent"
-      v-model="form"
-      @next="step++"
-      @prev="step--"
-    />
-    
-    <Results v-if="step === 5" :form="form" />
+  <div class="container">
+    <h1 class="mb-6">Calculadora Energia Sustentável</h1>
+
+    <div class="card card--pad">
+      <Stepper :step="step" />
+
+      <component
+        :is="currentComponent"
+        v-model="form"
+        @next="step++"
+        @prev="step--"
+      />
+    </div>
+
+    <div class="mt-6" v-if="step === 5">
+      <div class="card card--pad">
+        <Results :form="form" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -102,7 +109,6 @@ export default {
 <style lang="scss">
 @import './assets/styles/main.scss';
 #app {
-  max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
 }
