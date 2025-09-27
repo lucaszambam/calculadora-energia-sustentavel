@@ -18,14 +18,7 @@
 
     <ChartDisplay
       v-if="hasParams"
-      :summary="{
-        convMensal,
-        renMensal,
-        convAnual,
-        renAnual,
-        economiaAnual,
-        co2AnoKg
-      }"
+      :summary="chartData"
     />
     <!-- Botão de contato -->
     <div class="text-center mt-3">
@@ -77,6 +70,16 @@ export default {
     }
   },
   computed: {
+    chartData() {
+      return {
+        convMensal: this.convMensal,
+        renMensal: this.renMensal,
+        convAnual: this.convAnual,
+        renAnual: this.renAnual,
+        economiaAnual: this.economiaAnual,
+        co2AnoKg: this.co2AnoKg
+      }
+    },
     hasParams() {
       const p = this.form.parametros
       return !!(p && (p.tarifa_base ?? null) !== null)

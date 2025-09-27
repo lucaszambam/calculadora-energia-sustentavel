@@ -82,6 +82,20 @@ export default {
     watch(() => ({ ...props.summary }), build, { deep: true })
 
     return { barEl, pieEl }
+  },
+  watch: {
+    summary: {
+      deep: true,
+      handler(newVal) {
+        if (this.chart) {
+          this.chart.data.datasets[0].data = [
+            newVal.convMensal,
+            newVal.renMensal
+          ]
+          this.chart.update()
+        }
+      }
+    }
   }
 }
 </script>
