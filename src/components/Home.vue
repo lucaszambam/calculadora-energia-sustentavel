@@ -120,7 +120,7 @@ export default { name: 'Home' }
     &__grid {
       display: grid;
       gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
     }
 
     .card {
