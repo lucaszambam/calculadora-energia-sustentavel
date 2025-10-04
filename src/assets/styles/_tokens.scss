@@ -15,9 +15,11 @@ $danger:  #ef4444;
 $warning: #f59e0b;
 $success: #10b981;
 
-$font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-           Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
-           "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@500;600;700&display=swap');
+
+// Variáveis de fonte
+$font-body: 'Poppins', sans-serif;
+$font-heading: 'Montserrat', sans-serif;
 
 $space-1: .25rem;  // 4px
 $space-2: .5rem;   // 8px

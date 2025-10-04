@@ -1,11 +1,11 @@
 <template>
-  <div class="charts" >
-    <div class="chart-card card card--pad" style="height:330px;">
+  <div class="charts">
+    <div class="chart-card card card--pad" style="height:100%;">
       <h3>Comparativo Mensal (R$)</h3>
-      <canvas ref="barEl"></canvas>
+      <canvas ref="barEl" style="max-height:220px;"></canvas>
     </div>
 
-    <div class="chart-card card card--pad" style="height:330px;">
+    <div class="chart-card card card--pad" style="height:100%">
       <h3>Distribuição Anual (R$)</h3>
       <canvas ref="pieEl"></canvas>
     </div>
@@ -111,6 +111,13 @@ export default {
     border-radius: 6px;
     padding: 1rem;
     border: 1px solid #e3e7ea;
+    width: 100%;
+    max-width: 100%;
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
 
     h3 {
       margin: 0 0 .75rem 0;

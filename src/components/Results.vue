@@ -7,23 +7,52 @@
     </div>
 
     <div class="results-grid" v-else>
+      <!-- KPIs -->
       <ul class="kpi-list">
-        <li class="kpi-item"><span><strong>Convencional (mês)</strong></span><span>{{ toBRL(convMensal) }}</span></li>
-        <li class="kpi-item"><span><strong>Convencional (12 meses)</strong></span><span>{{ toBRL(convAnual) }}</span></li>
-        <li class="kpi-item"><span><strong>Renovável (mês)</strong></span><span>{{ toBRL(renMensal) }}</span></li>
-        <li class="kpi-item"><span><strong>Renovável (12 meses)</strong></span><span>{{ toBRL(renAnual) }}</span></li>
-        <li class="kpi-item"><span><strong>Economia (ano)</strong></span><span>{{ toBRL(economiaAnual) }} ({{ economiaPercent.toFixed(1) }}%)</span></li>
-        <li class="kpi-item"><span><strong>CO₂ evitado (kg/ano)</strong></span><span>{{ co2AnoKg.toFixed(0) }}</span></li>
-        <li class="kpi-item"><span><strong>Consumo estimado</strong></span><span>{{ consumoKwhMensal.toFixed(2) }} kWh/mês</span></li>
+        <li class="kpi-item">
+          <span><strong>Convencional (mês)</strong></span>
+          <span>{{ toBRL(convMensal) }}</span>
+        </li>
+        <li class="kpi-item">
+          <span><strong>Convencional (12 meses)</strong></span>
+          <span>{{ toBRL(convAnual) }}</span>
+        </li>
+        <li class="kpi-item">
+          <span><strong>Renovável (mês)</strong></span>
+          <span>{{ toBRL(renMensal) }}</span>
+        </li>
+        <li class="kpi-item">
+          <span><strong>Renovável (12 meses)</strong></span>
+          <span>{{ toBRL(renAnual) }}</span>
+        </li>
+        <li class="kpi-item">
+          <span><strong>CO₂ evitado (kg/ano)</strong></span>
+          <span>{{ co2AnoKg.toFixed(0) }}</span>
+        </li>
+        <li class="kpi-item">
+          <span><strong>Consumo estimado</strong></span>
+          <span>{{ consumoKwhMensal.toFixed(2) }} kWh/mês</span>
+        </li>
+        <li class="kpi-item destaque">
+          <span><strong>Economia (ano)</strong></span>
+          <span>{{ toBRL(economiaAnual) }} ({{ economiaPercent.toFixed(1) }}%)</span>
+        </li>
       </ul>
 
-      <div>
+      <!-- Gráficos -->
+      <div class="charts">
         <ChartDisplay :summary="chartData" />
       </div>
     </div>
 
-    <div class="center mt-6">
-      <button class="btn btn--primary" @click="showModal = true">Deseja entrar em contato?</button>
+    <!-- Botões de ação -->
+    <div class="actions mt-6">
+      <button class="btn btn--primary" @click="showModal = true">
+        Deseja entrar em contato?
+      </button>
+      <button class="btn btn--secondary" @click="$emit('nova-simulacao')">
+        Realizar nova simulação
+      </button>
     </div>
 
     <!-- Modal de Contato -->
@@ -33,41 +62,25 @@
         <form @submit.prevent="enviarContato">
           <div class="mb-2">
             <label>Nome</label>
-            <input
-              v-model.trim="contato.nome"
-              required
-              class="form-control lg"
-              placeholder="Seu nome completo"
-            />
+            <input v-model.trim="contato.nome" required class="form-control lg" placeholder="Seu nome completo" />
           </div>
 
           <div class="mb-2">
             <label>E-mail</label>
-            <input
-              v-model="contato.email"
-              @input="onEmailInput"
-              type="email"
-              class="form-control lg"
-              placeholder="seuemail@dominio.com"
-            />
+            <input v-model="contato.email" @input="onEmailInput" type="email" class="form-control lg"
+              placeholder="seuemail@dominio.com" />
             <small v-if="contato.email && !emailValido" class="text-danger">E-mail inválido.</small>
           </div>
 
           <div class="mb-2">
             <label>Telefone</label>
-            <input
-              v-model="contato.telefone"
-              @input="onPhoneInput"
-              class="form-control lg"
-              inputmode="numeric"
-              maxlength="16"
-              placeholder="(00) 00000-0000"
-            />
+            <input v-model="contato.telefone" @input="onPhoneInput" class="form-control lg" inputmode="numeric"
+              maxlength="16" placeholder="(00) 00000-0000" />
             <small v-if="contato.telefone && !foneValido" class="text-danger">Telefone incompleto.</small>
           </div>
 
           <div class="mb-2 form-check">
-            <input type="checkbox" v-model="contato.consentimento" id="lgpd" required />
+            <input type="checkbox" style="width: unset;" v-model="contato.consentimento" id="lgpd" required />
             <label for="lgpd">
               Aceito os
               <a href="#" @click.prevent="showTerms = true">Termos de Uso e Privacidade</a>.
@@ -75,7 +88,7 @@
           </div>
 
           <div class="mt-3 d-flex" style="display: flex; gap: 1rem;">
-            <button type="button" class="btn btn-secondary" @click="showModal=false">Cancelar</button>
+            <button type="button" class="btn btn-secondary" @click="showModal = false">Cancelar</button>
             <button type="submit" class="btn btn-success" :disabled="loading">
               <span v-if="loading">Enviando...</span>
               <span v-else>Enviar</span>
@@ -93,14 +106,15 @@
           <p>
             Ao prosseguir, você concorda com a coleta e o tratamento dos dados pessoais informados
             (nome, e-mail e/ou telefone) para fins de contato e acompanhamento da simulação realizada na
-            Calculadora Energia Sustentável.
+            Calculadora de Energia Sustentável.
           </p>
           <p>
             <strong>Finalidade:</strong> uso exclusivo para retorno comercial, esclarecimento de dúvidas e envio
             de informações relacionadas à sua simulação e às opções de eficiência energética.
           </p>
           <p>
-            <strong>Base legal:</strong> consentimento do titular, conforme a Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018).
+            <strong>Base legal:</strong> consentimento do titular, conforme a Lei Geral de Proteção de Dados (LGPD – Lei
+            nº 13.709/2018).
           </p>
           <p>
             <strong>Compartilhamento:</strong> não compartilhamos seus dados com terceiros sem novo consentimento,
@@ -110,10 +124,12 @@
             <strong>Segurança:</strong> adotamos medidas técnicas e administrativas para proteger suas informações.
           </p>
           <p>
-            <strong>Retenção:</strong> os dados são mantidos pelo tempo necessário ao atendimento da finalidade informada.
+            <strong>Retenção:</strong> os dados são mantidos pelo tempo necessário ao atendimento da finalidade
+            informada.
           </p>
           <p>
-            <strong>Seus direitos:</strong> acesso, correção, portabilidade, revogação do consentimento e eliminação, mediante solicitação.
+            <strong>Seus direitos:</strong> acesso, correção, portabilidade, revogação do consentimento e eliminação,
+            mediante solicitação.
           </p>
         </div>
         <div class="mt-3 text-end">
@@ -123,6 +139,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import ChartDisplay from './ChartDisplay.vue'
@@ -178,8 +195,8 @@ export default {
     eficienciaTotal() {
       const efc = this.p.eficiencias ?? []
       const seg = Number(this.form.id_segmento)
-      const te  = Number(this.form.id_tipo_energia)
-      const ti  = Number(this.form.id_tipo_instalacao)
+      const te = Number(this.form.id_tipo_energia)
+      const ti = Number(this.form.id_tipo_instalacao)
 
       if (Array.isArray(efc)) {
         const m = efc.find(e =>
@@ -328,46 +345,195 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.results { background:#ecf0f1; padding:1rem; border-radius:6px; }
-.kpis { list-style:none; padding:0; margin:0 0 1rem 0; }
-.kpis li { margin:.35rem 0; }
-.alert { background:#fff3cd; border:1px solid #ffeeba; padding:.75rem; border-radius:4px; margin-bottom:1rem; }
+.results {
+  background:#f9fafb;
+  padding:1.5rem;
+  border-radius:8px;
+
+  h2 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .results-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .kpi-list {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .kpi-item {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      font-size: .95rem;
+
+      strong {
+        font-weight: 600;
+      }
+    }
+
+    .destaque {
+      background: #e6f9ec;
+      border-left: 4px solid #27ae60;
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  }
+
+  .charts {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    .btn {
+      padding: .75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+
+      &--primary {
+        background: #27ae60;
+        color: #fff;
+        &:hover { background: #219150; }
+      }
+
+      &--secondary {
+        background: #e9ecef;
+        color: #333;
+        &:hover { background: #d6d8db; }
+      }
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .results-grid {
+      flex-direction: column;
+    }
+    .kpi-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+  }
+}
+
+
+.alert {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: .75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
 
 .modal-backdrop {
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.5);
-  display:flex; align-items:center; justify-content:center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
 }
+
 .modal {
-  background:#fff; padding:1.5rem; border-radius:8px;
-  width:100%; max-width:520px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 520px;
 }
-.modal-terms { max-width:720px; }
+
+.modal-terms {
+  max-width: 720px;
+}
+
 .terms-body {
-  max-height: 55vh; overflow:auto;
-  padding-right:.5rem;
+  max-height: 55vh;
+  overflow: auto;
+  padding-right: .5rem;
 }
+
 .form-control {
-  width:94%;
-  padding:.75rem .9rem;
-  border:1px solid #dcdcdc; border-radius:6px;
+  width: 94%;
+  padding: .75rem .9rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
 }
+
 .mb-2 {
   margin-bottom: .5rem;
 }
-.form-control.lg { font-size:1rem; }
+
+.form-control.lg {
+  font-size: 1rem;
+}
+
 .form-check {
-  display:flex; align-items:center; gap:.5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
 }
+
 .btn {
-  padding:.55rem 1rem; border-radius:6px; cursor:pointer; border:0;
+  padding: .55rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 0;
 }
-.btn-primary { background:#2d89ef; color:#fff; }
-.btn-success { background:#27ae60; color:#fff; }
-.btn-secondary { background:#7f8c8d; color:#fff; }
-.mt-3 { margin-top:1rem; }
-.text-end { text-align:end; }
-.text-center { text-align:center; }
-.text-danger { color:#c0392b; }
-</style>
+
+.btn-primary {
+  background: #2d89ef;
+  color: #fff;
+}
+
+.btn-success {
+  background: #27ae60;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #7f8c8d;
+  color: #fff;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-danger {
+  color: #c0392b;
+}
+</style>  

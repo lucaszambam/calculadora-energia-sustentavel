@@ -9,8 +9,6 @@
 }
 
 body {
-  font-family: sans-serif;
-  background: #f8f8f8;
   margin: 0;
   padding: 0;
 }
@@ -34,3 +32,50 @@ button {
     cursor: not-allowed;
   }
 }
+
+body {
+  color: #333;
+  background: #fafafa;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.simulador {
+  padding: 2rem;
+  
+  h1 {
+    text-align: center;
+  }
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background .3s ease;
+
+  &.btn-primary {
+    background: #27ae60;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background: #219150;
+    }
+  }
+
+  &.btn-success {
+    background: #2ecc71;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background: #27ae60;
+    }
+  }
+}
+

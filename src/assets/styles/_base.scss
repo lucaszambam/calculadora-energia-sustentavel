@@ -1,38 +1,108 @@
-* { box-sizing: border-box; }
-html, body, #app { height: 100%; }
-html { scroll-behavior: smooth; }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: $font-sans;
+  font-family: $font-body;
   color: #0f172a;
   background: #f6f8fa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.container { 
-    max-width: 820px; 
-    margin: 2.5rem auto; 
-    padding: 0 $space-4; 
+h1, h2, h3, .btn, .stepper {
+  font-family: $font-heading; 
 }
 
-h1, h2, h3 { margin: 0 0 $space-6 0; font-weight: 700; letter-spacing: -.01em; }
-h1 { font-size: clamp(1.6rem, 1.1rem + 2vw, 2.2rem); }
-h2 { font-size: clamp(1.25rem, 1rem + .8vw, 1.5rem); }
-p  { margin: 0 0 $space-4 0; color: $muted; }
+h1,
+h2,
+h3 {
+  margin: 0 0 $space-6 0;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.2rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 1rem + .8vw, 1.5rem);
+}
+
+p {
+  margin: 0 0 $space-4 0;
+  color: $muted;
+}
 
 .card {
   background: $surface;
   border: 1px solid $line;
   border-radius: $radius-12;
   box-shadow: $shadow-1;
-  &--pad { padding: $space-6; }
+
+  &--pad {
+    padding: $space-6;
+  }
 }
 
-.row { display: flex; gap: $space-4; flex-wrap: wrap; }
-.col { flex: 1 1 0; min-width: 0; }
+.row {
+  display: flex;
+  gap: $space-4;
+  flex-wrap: wrap;
+}
 
-.mt-2{margin-top:$space-2;} .mt-4{margin-top:$space-4;} .mt-6{margin-top:$space-6;}
-.mb-2{margin-bottom:$space-2;} .mb-4{margin-bottom:$space-4;} .mb-6{margin-bottom:$space-6;}
-.center { text-align: center; }
-.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); border:0; }
+.col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.mt-2 {
+  margin-top: $space-2;
+}
+
+.mt-4 {
+  margin-top: $space-4;
+}
+
+.mt-6 {
+  margin-top: $space-6;
+}
+
+.mb-2 {
+  margin-bottom: $space-2;
+}
+
+.mb-4 {
+  margin-bottom: $space-4;
+}
+
+.mb-6 {
+  margin-bottom: $space-6;
+}
+
+.center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}

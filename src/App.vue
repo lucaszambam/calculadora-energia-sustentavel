@@ -1,27 +1,34 @@
 <template>
   <div class="container">
-    <h1 class="mb-6">Calculadora Energia Sustentável</h1>
+    <Home v-if="step === 0" @start="step = 1" />
 
-    <div class="card card--pad">
-      <Stepper :step="step" />
+    <div v-else class="simulador">
+      <h1 class="mb-6">Calculadora de Energia Sustentável</h1>
 
-      <component
-        :is="currentComponent"
-        v-model="form"
-        @next="step++"
-        @prev="step--"
-      />
-    </div>
+      <div class="stepper-wrapper" v-if="step !== 5">
+        <Stepper :step="step" />
+      </div>
 
-    <div class="mt-6" v-if="step === 5">
-      <div class="card card--pad">
-        <Results :form="form" />
+      <div class="step-content" v-if="step !== 5">
+        <component
+          :is="currentComponent"
+          v-model="form"
+          @next="step++"
+          @prev="step--"
+        />
+      </div>
+
+      <div class="mt-6" v-if="step === 5">
+        <div class="card card--pad">
+          <Results :form="form" @nova-simulacao="reiniciar()"/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Home from './components/Home.vue'
 import Stepper from './components/Stepper.vue'
 import StepEnergyType from './components/Steps/StepEnergyType.vue'
 import StepLocation from './components/Steps/StepLocation.vue'
@@ -32,6 +39,7 @@ import Results from './components/Results.vue'
 export default {
   name: 'App',
   components: {
+    Home,
     Stepper,
     StepEnergyType,
     StepLocation,
@@ -41,7 +49,7 @@ export default {
   },
   data() {
     return {
-      step: 1,
+      step: 0,
       form: {
         id_tipo_energia: null,
         id_cidade: null,
@@ -78,6 +86,17 @@ export default {
     }
   },
   methods: {
+    reiniciar() {
+      this.step = 1;
+      this.form =  {
+        id_tipo_energia: null,
+        id_cidade: null,
+        id_segmento: null,
+        id_tipo_instalacao: null,
+        gastoMensal: null,
+        parametros: null
+      }
+    },
     async carregarParametros() {
       const { id_cidade, id_segmento, id_tipo_instalacao, id_tipo_energia } = this.form
       if (!id_cidade || !id_segmento || !id_tipo_instalacao || !id_tipo_energia) {
@@ -108,8 +127,4 @@ export default {
 
 <style lang="scss">
 @import './assets/styles/main.scss';
-#app {
-  margin: 2rem auto;
-  padding: 1rem;
-}
 </style>
